@@ -6,8 +6,6 @@
   "homepage": "https://kaleb110.github.io/Recipe-app-react",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "predeploy": "vite build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
