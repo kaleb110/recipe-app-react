@@ -50,7 +50,8 @@ function App() {
       newUrl = "http://www.themealdb.com/api/json/v1/1/search.php?s=";
     } else if (targetClass === "alphabet") {
       newUrl = "http://www.themealdb.com/api/json/v1/1/search.php?s=";
-    } else {
+    }
+    else {
       newUrl = `http://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`;
     }
     seturl(newUrl);
@@ -64,7 +65,7 @@ function App() {
 
   return (
     <div className="flex flex-col gap-3 py-8 px-4 bg-slate-100 min-h-screen">
-      <Router>
+      <Router basename="/Recipe-app-react">
         <header>
           <nav>
             <div className="">
