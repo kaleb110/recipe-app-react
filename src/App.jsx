@@ -1,8 +1,10 @@
-import Home from "./components/Home";
-import Alphabet from "./components/Alphabet";
-import AlphabetLetter from "./components/AlphabetLetter";
-import Search from "./components/Search";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Home from "./routes/Home";
+import Alphabet from "./routes/Alphabet";
+import AlphabetLetter from "./routes/AlphabetLetter";
+import Search from "./routes/Search";
+import ErrorPage from "./components/ErrorPage";
+// import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -42,40 +44,80 @@ function App() {
 
   //
   const handleBtnClick = (e, letter) => {
-    const targetClass = e.target.className;
+    const targetId = e.target.id;
     let newUrl = "";
-    if (targetClass === "search") {
+    if (targetId === "search") {
       newUrl = `http://www.themealdb.com/api/json/v1/1/search.php?s=${query}`;
-    } else if (targetClass === "home") {
+    } else if (targetId === "home") {
       newUrl = "http://www.themealdb.com/api/json/v1/1/search.php?s=";
-    } else if (targetClass === "alphabet") {
+    } else if (targetId === "alphabet") {
       newUrl = "http://www.themealdb.com/api/json/v1/1/search.php?s=";
-    }
-    else {
+    } else {
       newUrl = `http://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`;
     }
     seturl(newUrl);
     // fetchData();
   };
 
-  // const handleLetterClick = (e) => {
-  //   const targetLetter = e.target.value;
-  //   seturl(`www.themealdb.com/api/json/v1/1/search.php?f=${targetLetter}`);
-  // };
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      errorElement: <ErrorPage />,
+      element: (
+        <Home
+          handleBtnClick={handleBtnClick}
+          meal={meal}
+          truncateText={truncateText}
+        />
+      ),
+    },
+    {
+      path: "/search",
+      element: (
+        <Search
+          setquery={setquery}
+          handleBtnClick={handleBtnClick}
+          handleClick={handleClick}
+          isLoading={isLoading}
+          meal={meal}
+          truncateText={truncateText}
+        />
+      ),
+    },
+    {
+      path: "/alphabet",
+      element: (
+        <Alphabet
+          meal={meal}
+          handleBtnClick={handleBtnClick}
+          truncateText={truncateText}
+          onClick={handleBtnClick}
+        />
+      ),
+      children: [
+        {
+          path: "/alphabet/:letter",
+          element: <AlphabetLetter meal={meal} truncateText={truncateText} />,
+        },
+      ],
+    },
+  ]);
 
   return (
-    <div className="flex flex-col gap-3 py-8 px-4 bg-slate-100 min-h-screen">
-      <Router basename="/Recipe-app-react">
+    <div className="flex flex-col gap-3 py-4 px-4 sm:px-12 bg-slate-100 min-h-screen">
+      <RouterProvider router={router} />
+
+      {/* {<Router basename="/Recipe-app-react">
         <header>
           <nav>
-            <div className="">
-              <ul className="justify-between flex sm:px-4">
+            <div className="sm:px-8">
+              <ul className="justify-between flex ">
                 <Link
                   to="/"
                   onClick={(e) => handleBtnClick(e)}
                   className="home"
                 >
-                  <li className="text-slate-700 font-bold hover:cursor-pointer hover:text-slate-500 leading-1 max-sm:text-sm">
+                  <li className="text-gray-500 font-bold hover:cursor-pointer hover:text-gray-600 leading-1 max-sm:text-[16px]">
                     Home
                   </li>
                 </Link>
@@ -85,7 +127,7 @@ function App() {
                     onClick={(e) => handleBtnClick(e)}
                     className="search"
                   >
-                    <li className="text-slate-700 font-bold hover:cursor-pointer hover:text-slate-500 leading-1 max-sm:text-sm">
+                    <li className="text-gray-500 font-bold hover:cursor-pointer hover:text-gray-600 leading-1 max-sm:text-[16px]">
                       Search
                     </li>
                   </Link>
@@ -94,7 +136,7 @@ function App() {
                     onClick={(e) => handleBtnClick(e)}
                     className="alphabet"
                   >
-                    <li className="text-slate-600 font-bold hover:cursor-pointer hover:text-slate-500 leading-1 max-sm:text-sm">
+                    <li className="text-gray-500 font-bold hover:cursor-pointer hover:text-gray-600 leading-1 max-sm:text-[16px]">
                       Alphabet
                     </li>
                   </Link>
@@ -119,7 +161,7 @@ function App() {
                 truncateText={truncateText}
               />
             }
-          ></Route>
+           />
           <Route
             path="/alphabet"
             element={
@@ -135,10 +177,10 @@ function App() {
               element={
                 <AlphabetLetter meal={meal} truncateText={truncateText} />
               }
-            ></Route>
+            />
           </Route>
         </Routes>
-      </Router>
+      </Router>} */}
     </div>
   );
 }
