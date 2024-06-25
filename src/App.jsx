@@ -59,49 +59,54 @@ function App() {
     // fetchData();
   };
 
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        errorElement: <ErrorPage />,
+        element: (
+          <Home
+            handleBtnClick={handleBtnClick}
+            meal={meal}
+            truncateText={truncateText}
+          />
+        ),
+      },
+      {
+        path: "/search",
+        element: (
+          <Search
+            setquery={setquery}
+            handleBtnClick={handleBtnClick}
+            handleClick={handleClick}
+            isLoading={isLoading}
+            meal={meal}
+            truncateText={truncateText}
+          />
+        ),
+      },
+      {
+        path: "/alphabet",
+        element: (
+          <Alphabet
+            meal={meal}
+            handleBtnClick={handleBtnClick}
+            truncateText={truncateText}
+            onClick={handleBtnClick}
+          />
+        ),
+        children: [
+          {
+            path: "/alphabet/:letter",
+            element: <AlphabetLetter meal={meal} truncateText={truncateText} />,
+          },
+        ],
+      },
+    ],
     {
-      path: "/",
-      errorElement: <ErrorPage />,
-      element: (
-        <Home
-          handleBtnClick={handleBtnClick}
-          meal={meal}
-          truncateText={truncateText}
-        />
-      ),
-    },
-    {
-      path: "/search",
-      element: (
-        <Search
-          setquery={setquery}
-          handleBtnClick={handleBtnClick}
-          handleClick={handleClick}
-          isLoading={isLoading}
-          meal={meal}
-          truncateText={truncateText}
-        />
-      ),
-    },
-    {
-      path: "/alphabet",
-      element: (
-        <Alphabet
-          meal={meal}
-          handleBtnClick={handleBtnClick}
-          truncateText={truncateText}
-          onClick={handleBtnClick}
-        />
-      ),
-      children: [
-        {
-          path: "/alphabet/:letter",
-          element: <AlphabetLetter meal={meal} truncateText={truncateText} />,
-        },
-      ],
-    },
-  ]);
+      basename: "/Recipe-app-react",
+    }
+  );
 
   return (
     <div className="flex flex-col gap-3 py-4 px-4 sm:px-12 bg-slate-100 min-h-screen">
