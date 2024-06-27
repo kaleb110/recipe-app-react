@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 
 const Meal = ({ meal, truncateText }) => {
   return (
@@ -8,11 +9,13 @@ const Meal = ({ meal, truncateText }) => {
           i.meals && i.meals.length > 0 ? (
             i.meals.map((mealItem) => (
               <div key={mealItem.idMeal} className="flex flex-col">
-                <img
-                  src={mealItem.strMealThumb}
-                  alt={mealItem.strMeal}
-                  className="rounded-t-lg w-[300px] h-[200px] object-cover"
-                />
+                <Link to={`/meal/${mealItem.idMeal}`}>
+                  <img
+                    src={mealItem.strMealThumb}
+                    alt={mealItem.strMeal}
+                    className="rounded-t-lg w-[300px] h-[200px] object-cover"
+                  />
+                </Link>
                 <div className="flex flex-col bg-white py-4 shadow-lg rounded-b-xl">
                   <p className="text-base text-wrap font-bold break-words max-w-[280px] px-2">
                     {mealItem.strMeal}

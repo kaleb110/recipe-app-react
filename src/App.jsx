@@ -3,6 +3,7 @@ import Alphabet from "./routes/Alphabet";
 import AlphabetLetter from "./routes/AlphabetLetter";
 import Search from "./routes/Search";
 import ErrorPage from "./components/ErrorPage";
+import SingleMeal from "./routes/SingleMeal";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -84,6 +85,10 @@ function App() {
         ),
       },
       {
+        path: "/meal/:mealId",
+        element: <SingleMeal meal={meal} handleBtnClick={handleBtnClick} />,
+      },
+      {
         path: "/alphabet",
         element: (
           <Alphabet
@@ -107,6 +112,7 @@ function App() {
   );
 
   return (
+    
     <div className="flex flex-col gap-3 py-4 px-4 sm:px-12 bg-slate-100 min-h-screen">
       <RouterProvider router={router} />
     </div>
