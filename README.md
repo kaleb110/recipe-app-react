@@ -56,7 +56,7 @@ Contributions are welcome! If you have any ideas, suggestions, or issues, please
 
 ## 📞 Contact
 
-If you have any questions or want to reach out, feel free to contact me at [your-email@example.com](mailto:kalisha123k@gmail.com).
+If you have any questions or want to reach out, feel free to contact me at [kalisha123k@gmail.com](mailto:kalisha123k@gmail.com).
 
 ---
 
