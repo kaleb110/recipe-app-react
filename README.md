@@ -23,7 +23,7 @@ Welcome to the Meals App! This is a React-based web application that allows user
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/meals-app.git
+    git clone https://github.com/kaleb110/meals-app.git
     cd meals-app
     ```
 
