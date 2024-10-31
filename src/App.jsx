@@ -106,9 +106,6 @@ function App() {
         ],
       },
     ],
-    {
-      basename: "/recipe-app-react",
-    }
   );
 
   return (
