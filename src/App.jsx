@@ -107,13 +107,13 @@ function App() {
       },
     ],
     {
-      basename: "/Recipe-app-react",
+      basename: "/recipe-app-react",
     }
   );
 
   return (
     
-    <div className="flex flex-col gap-3 py-4 px-4 sm:px-12 bg-slate-100 min-h-screen">
+    <div className="flex flex-col min-h-screen gap-3 px-4 py-4 sm:px-12 bg-slate-100">
       <RouterProvider router={router} />
     </div>
   );
