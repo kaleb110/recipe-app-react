@@ -59,6 +59,9 @@ The Meals App uses the [TheMealDB API](https://www.themealdb.com/api.php) to fet
 
 Contributions are welcome! If you have any ideas, suggestions, or issues, please open an issue or submit a pull request.
 
+Please read our [Contributing Guide](CONTRIBUTING.md) for details on how you can contribute.
+
+
 ## 📞 Contact
 
 If you have any questions or want to reach out, feel free to contact me at [kalisha123k@gmail.com](mailto:kalisha123k@gmail.com).
